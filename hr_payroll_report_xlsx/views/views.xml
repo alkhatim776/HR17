@@ -1,0 +1,25 @@
+<odoo>
+     
+        <report
+        id="payroll_report_payslip"
+        model="hr.payslip"
+        string="Payslip XLSX"
+        report_type="xlsx"
+        name="hr_payroll_report_xlsx.hr_payroll_report_excel"
+        file="Payroll Report"
+        attachment_use="False"
+        />
+        <!-- <data>
+        <record id="payroll_report_payslip" model="ir.actions.report">
+            <field name="name">Payslip XLSX</field>
+            <field name="model">hr.payslip</field>
+            <field name="report_type">xlsx</field>
+            <field name="report_name">xlsx_payslip_report.xlsx_payslip_report</field>
+            <field name="report_file">xlsx_payslip_report.xlsx_payslip_report</field>
+            
+            <field name="binding_model_id" ref="hr_payroll.model_hr_payslip"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data> -->
+
+</odoo>

@@ -1,0 +1,13 @@
+<odoo>
+  <data>
+  <report
+    id="payslip_xlsx"
+    model="hr.payslip.run"
+    string="Salary Xlsx Reports"
+    report_type="xlsx"
+    name="payroll_print_xlsx.xlsx_payroll_report"
+    file="payslip_xlsx"
+    attachment_use="False"
+/>
+  </data>
+</odoo>

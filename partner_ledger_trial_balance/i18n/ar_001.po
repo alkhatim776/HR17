@@ -1,0 +1,488 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* partner_ledger_trial_balance
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-03-09 17:34+0000\n"
+"PO-Revision-Date: 2024-03-09 17:34+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: partner_ledger_trial_balance
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.partnerledger_details
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.report_partnerledger
+msgid ""
+"<br/>\n"
+"                            <strong>Account Type :</strong>"
+msgstr ""
+"<br/>\n"
+"                            <strong>نوع الحساب :</strong>"
+
+#. module: partner_ledger_trial_balance
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.partnerledger_details
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.report_partnerledger
+msgid ""
+"<br/>\n"
+"                            <strong>Accounts :</strong>"
+msgstr ""
+"<br/>\n"
+"                            <strong>الحسابات :</strong>"
+
+#. module: partner_ledger_trial_balance
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.partnerledger_details
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.report_partnerledger
+msgid ""
+"<br/>\n"
+"                            <strong>Partner Tags :</strong>"
+msgstr ""
+"<br/>\n"
+"                            <strong>تصنيف الشريك :</strong>"
+
+#. module: partner_ledger_trial_balance
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.partnerledger_details
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.report_partnerledger
+msgid ""
+"<br/>\n"
+"                            <strong>Target Moves :</strong>"
+msgstr ""
+"<br/>\n"
+"                            <strong>القيود المستهدفة :</strong>"
+
+#. module: partner_ledger_trial_balance
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.partnerledger_details
+msgid "<span>#</span>"
+msgstr ""
+
+#. module: partner_ledger_trial_balance
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.partnerledger_details
+msgid "<span>Ending Balance</span>"
+msgstr "<span>الرصيد الختامي</span>"
+
+#. module: partner_ledger_trial_balance
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.partnerledger_details
+msgid "<span>Initial Balance</span>"
+msgstr "<span>الرصيد اﻹفتتاحي</span>"
+
+#. module: partner_ledger_trial_balance
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.partnerledger_details
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.report_partnerledger
+msgid "<strong>Date From:</strong>"
+msgstr "<strong>من تاريخ:</strong>"
+
+#. module: partner_ledger_trial_balance
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.partnerledger_details
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.report_partnerledger
+msgid "<strong>Date To:</strong>"
+msgstr "<strong>الي تاريخ:</strong>"
+
+#. module: partner_ledger_trial_balance
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.partnerledger_details
+msgid "<strong>Detailed Partner Account Statement</strong>"
+msgstr "<strong>كشف حساب الشريك تفصيلي</strong>"
+
+#. module: partner_ledger_trial_balance
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.report_partnerledger
+msgid "<strong>Partner Account Statement</strong>"
+msgstr "<strong>كشف حساب الشريك</strong>"
+
+#. module: partner_ledger_trial_balance
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.partnerledger_details
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.report_partnerledger
+msgid "<strong>Total</strong>"
+msgstr "<strong>اﻹجمالي</strong>"
+
+#. module: partner_ledger_trial_balance
+#. odoo-python
+#: code:addons/partner_ledger_trial_balance/reports/report_partner_ledger.py:0
+#: model:ir.model.fields,field_description:partner_ledger_trial_balance.field_partnerledger_wiz__result_selection
+#, python-format
+msgid "Account Type"
+msgstr "نوع الحساب"
+
+#. module: partner_ledger_trial_balance
+#. odoo-python
+#: code:addons/partner_ledger_trial_balance/reports/report_partner_ledger.py:0
+#: model:ir.model.fields,field_description:partner_ledger_trial_balance.field_partnerledger_wiz__account_ids
+#, python-format
+msgid "Accounts"
+msgstr "الحسابات"
+
+#. module: partner_ledger_trial_balance
+#. odoo-python
+#: code:addons/partner_ledger_trial_balance/reports/report_partner_ledger.py:0
+#: model:ir.model.fields.selection,name:partner_ledger_trial_balance.selection__partnerledger_wiz__target_move__all
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.partnerledger_details
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.report_partnerledger
+#, python-format
+msgid "All Entries"
+msgstr "كل القيود"
+
+#. module: partner_ledger_trial_balance
+#. odoo-python
+#: code:addons/partner_ledger_trial_balance/reports/report_partner_ledger.py:0
+#: model:ir.model.fields.selection,name:partner_ledger_trial_balance.selection__partnerledger_wiz__target_move__posted
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.partnerledger_details
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.report_partnerledger
+#, python-format
+msgid "All Posted Entries"
+msgstr "كل القيود المرحلة"
+
+#. module: partner_ledger_trial_balance
+#. odoo-python
+#: code:addons/partner_ledger_trial_balance/reports/report_partner_ledger.py:0
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.partnerledger_details
+#, python-format
+msgid "Balance"
+msgstr "الرصيد"
+
+#. module: partner_ledger_trial_balance
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.partner_ledger_wizard
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: partner_ledger_trial_balance
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.partner_ledger_wizard
+msgid ""
+"Click on <strong> Print </strong> button to print partner ledger report."
+msgstr "اضغط علي  <strong> طباعة </strong> لطباعة تقرير كشف حساب الشريك."
+
+#. module: partner_ledger_trial_balance
+#: model:ir.model.fields,field_description:partner_ledger_trial_balance.field_partnerledger_wiz__company_id
+msgid "Company"
+msgstr "الشركة"
+
+#. module: partner_ledger_trial_balance
+#: model:ir.model.fields,field_description:partner_ledger_trial_balance.field_partnerledger_wiz__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: partner_ledger_trial_balance
+#: model:ir.model.fields,field_description:partner_ledger_trial_balance.field_partnerledger_wiz__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: partner_ledger_trial_balance
+#. odoo-python
+#: code:addons/partner_ledger_trial_balance/reports/report_partner_ledger.py:0
+#: code:addons/partner_ledger_trial_balance/reports/report_partner_ledger.py:0
+#: code:addons/partner_ledger_trial_balance/reports/report_partner_ledger.py:0
+#: code:addons/partner_ledger_trial_balance/reports/report_partner_ledger.py:0
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.partnerledger_details
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.report_partnerledger
+#, python-format
+msgid "Credit"
+msgstr "دائن"
+
+#. module: partner_ledger_trial_balance
+#. odoo-python
+#: code:addons/partner_ledger_trial_balance/reports/report_partner_ledger.py:0
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.partnerledger_details
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.report_partnerledger
+#, python-format
+msgid "Date"
+msgstr "التاريخ"
+
+#. module: partner_ledger_trial_balance
+#. odoo-python
+#: code:addons/partner_ledger_trial_balance/reports/report_partner_ledger.py:0
+#, python-format
+msgid "Date From"
+msgstr "من تاريخ"
+
+#. module: partner_ledger_trial_balance
+#. odoo-python
+#: code:addons/partner_ledger_trial_balance/reports/report_partner_ledger.py:0
+#, python-format
+msgid "Date To"
+msgstr "الى تاريخ"
+
+#. module: partner_ledger_trial_balance
+#. odoo-python
+#: code:addons/partner_ledger_trial_balance/reports/report_partner_ledger.py:0
+#: code:addons/partner_ledger_trial_balance/reports/report_partner_ledger.py:0
+#: code:addons/partner_ledger_trial_balance/reports/report_partner_ledger.py:0
+#: code:addons/partner_ledger_trial_balance/reports/report_partner_ledger.py:0
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.partnerledger_details
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.report_partnerledger
+#, python-format
+msgid "Debit"
+msgstr "مدين"
+
+#. module: partner_ledger_trial_balance
+#: model:ir.model.fields.selection,name:partner_ledger_trial_balance.selection__partnerledger_wiz__options__detailed
+msgid "Detailed"
+msgstr "تفصيلي"
+
+#. module: partner_ledger_trial_balance
+#: model:ir.actions.report,name:partner_ledger_trial_balance.partner_ledger_details
+#: model:ir.actions.report,name:partner_ledger_trial_balance.partner_ledger_details_html
+msgid "Detailed Partner Account Statement"
+msgstr "كشف حساب الشريك تفصيلي"
+
+#. module: partner_ledger_trial_balance
+#: model:ir.model.fields,field_description:partner_ledger_trial_balance.field_partnerledger_wiz__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: partner_ledger_trial_balance
+#: model:ir.model.fields,field_description:partner_ledger_trial_balance.field_partnerledger_wiz__date_to
+msgid "End Date"
+msgstr "الي تاريخ"
+
+#. module: partner_ledger_trial_balance
+#. odoo-python
+#: code:addons/partner_ledger_trial_balance/reports/report_partner_ledger.py:0
+#: code:addons/partner_ledger_trial_balance/reports/report_partner_ledger.py:0
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.report_partnerledger
+#, python-format
+msgid "Ending Balance"
+msgstr "الرصيد الختامي"
+
+#. module: partner_ledger_trial_balance
+#. odoo-python
+#: code:addons/partner_ledger_trial_balance/reports/report_partner_ledger.py:0
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.partnerledger_details
+#, python-format
+msgid "Entry"
+msgstr "القيد"
+
+#. module: partner_ledger_trial_balance
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.partner_ledger_wizard
+msgid "Export XLS"
+msgstr "تصدير XLS"
+
+#. module: partner_ledger_trial_balance
+#: model:ir.model.fields,field_description:partner_ledger_trial_balance.field_partnerledger_wiz__id
+msgid "ID"
+msgstr ""
+
+#. module: partner_ledger_trial_balance
+#. odoo-python
+#: code:addons/partner_ledger_trial_balance/reports/report_partner_ledger.py:0
+#, python-format
+msgid "Initial Balance"
+msgstr "الرصيد اﻹفتتاحي"
+
+#. module: partner_ledger_trial_balance
+#. odoo-python
+#: code:addons/partner_ledger_trial_balance/reports/report_partner_ledger.py:0
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.partnerledger_details
+#, python-format
+msgid "Label"
+msgstr "الوصف"
+
+#. module: partner_ledger_trial_balance
+#: model:ir.model.fields,field_description:partner_ledger_trial_balance.field_partnerledger_wiz__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: partner_ledger_trial_balance
+#: model:ir.model.fields,field_description:partner_ledger_trial_balance.field_partnerledger_wiz__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: partner_ledger_trial_balance
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.boxed_external_layout_inherits
+msgid "Logo"
+msgstr ""
+
+#. module: partner_ledger_trial_balance
+#. odoo-python
+#: code:addons/partner_ledger_trial_balance/reports/report_partner_ledger.py:0
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.report_partnerledger
+#, python-format
+msgid "Opening Balance"
+msgstr "الرصيد اﻹفتتاحي"
+
+#. module: partner_ledger_trial_balance
+#: model:ir.model.fields,field_description:partner_ledger_trial_balance.field_partnerledger_wiz__options
+msgid "Options"
+msgstr "خيارات الطباعة"
+
+#. module: partner_ledger_trial_balance
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.boxed_external_layout_inherits
+msgid "Page: <span class=\"page\"/>/ <span class=\"topage\"/>"
+msgstr "الصفحة: <span class=\"page\"/>/ <span class=\"topage\"/>"
+
+#. module: partner_ledger_trial_balance
+#. odoo-python
+#: code:addons/partner_ledger_trial_balance/reports/report_partner_ledger.py:0
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.partnerledger_details
+#, python-format
+msgid "Partner"
+msgstr "الشريك"
+
+#. module: partner_ledger_trial_balance
+#. odoo-python
+#: code:addons/partner_ledger_trial_balance/reports/report_partner_ledger.py:0
+#: code:addons/partner_ledger_trial_balance/reports/report_partner_ledger.py:0
+#: model:ir.actions.act_window,name:partner_ledger_trial_balance.partner_ledger_action
+#: model:ir.actions.report,name:partner_ledger_trial_balance.action_partner_ledger_xls
+#: model:ir.actions.report,name:partner_ledger_trial_balance.partner_ledger
+#: model:ir.actions.report,name:partner_ledger_trial_balance.partner_ledger_html
+#: model:ir.actions.report,print_report_name:partner_ledger_trial_balance.action_partner_ledger_xls
+#: model:ir.ui.menu,name:partner_ledger_trial_balance.menu_partner_ledger_action
+#, python-format
+msgid "Partner Account Statement"
+msgstr "كشف حساب الشريك"
+
+#. module: partner_ledger_trial_balance
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.partner_ledger_wizard
+msgid "Partner Ledger"
+msgstr "كشف حساب الشريك"
+
+#. module: partner_ledger_trial_balance
+#. odoo-python
+#: code:addons/partner_ledger_trial_balance/reports/report_partner_ledger.py:0
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.report_partnerledger
+#, python-format
+msgid "Partner Name"
+msgstr "اسم الشريك"
+
+#. module: partner_ledger_trial_balance
+#. odoo-python
+#: code:addons/partner_ledger_trial_balance/reports/report_partner_ledger.py:0
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.report_partnerledger
+#, python-format
+msgid "Partner No"
+msgstr "رقم الشريك"
+
+#. module: partner_ledger_trial_balance
+#. odoo-python
+#: code:addons/partner_ledger_trial_balance/reports/report_partner_ledger.py:0
+#: model:ir.model.fields,field_description:partner_ledger_trial_balance.field_partnerledger_wiz__partner_tag_ids
+#, python-format
+msgid "Partner Tags"
+msgstr "تصنيف الشريك"
+
+#. module: partner_ledger_trial_balance
+#: model:ir.model.fields,field_description:partner_ledger_trial_balance.field_partnerledger_wiz__partner_ids
+msgid "Partner's"
+msgstr "الشركاء"
+
+#. module: partner_ledger_trial_balance
+#. odoo-python
+#: code:addons/partner_ledger_trial_balance/reports/report_partner_ledger.py:0
+#: model:ir.model.fields.selection,name:partner_ledger_trial_balance.selection__partnerledger_wiz__result_selection__supplier
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.partnerledger_details
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.report_partnerledger
+#, python-format
+msgid "Payable Accounts"
+msgstr "حسابات دائنة"
+
+#. module: partner_ledger_trial_balance
+#: model:ir.model,name:partner_ledger_trial_balance.model_report_partner_ledger_trial_balance_partner_ledger_xlsx_report
+msgid "Payslip Batch XLSX Report"
+msgstr ""
+
+#. module: partner_ledger_trial_balance
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.partner_ledger_wizard
+msgid "Print"
+msgstr "طباعة"
+
+#. module: partner_ledger_trial_balance
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.partner_ledger_wizard
+msgid "Print Partner Ledger"
+msgstr "طباعة"
+
+#. module: partner_ledger_trial_balance
+#. odoo-python
+#: code:addons/partner_ledger_trial_balance/reports/report_partner_ledger.py:0
+#: model:ir.model.fields.selection,name:partner_ledger_trial_balance.selection__partnerledger_wiz__result_selection__customer
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.partnerledger_details
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.report_partnerledger
+#, python-format
+msgid "Receivable Accounts"
+msgstr "حسابات مدينة"
+
+#. module: partner_ledger_trial_balance
+#. odoo-python
+#: code:addons/partner_ledger_trial_balance/reports/report_partner_ledger.py:0
+#: model:ir.model.fields.selection,name:partner_ledger_trial_balance.selection__partnerledger_wiz__result_selection__customer_supplier
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.partnerledger_details
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.report_partnerledger
+#, python-format
+msgid "Receivable and Payable Accounts"
+msgstr "حسابات مدينة و دائنة"
+
+#. module: partner_ledger_trial_balance
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.report_partnerledger
+msgid "Ref"
+msgstr "المرجع"
+
+#. module: partner_ledger_trial_balance
+#: model:ir.model.fields,field_description:partner_ledger_trial_balance.field_partnerledger_wiz__reconciled
+msgid "Show Initial Balance"
+msgstr ""
+
+#. module: partner_ledger_trial_balance
+#: model:ir.model.fields,field_description:partner_ledger_trial_balance.field_partnerledger_wiz__date_from
+msgid "Start Date"
+msgstr "من تاريخ"
+
+#. module: partner_ledger_trial_balance
+#. odoo-python
+#: code:addons/partner_ledger_trial_balance/reports/report_partner_ledger.py:0
+#: model:ir.model.fields,field_description:partner_ledger_trial_balance.field_partnerledger_wiz__target_move
+#, python-format
+msgid "Target Moves"
+msgstr "القيود المستهدفة"
+
+#. module: partner_ledger_trial_balance
+#. odoo-python
+#: code:addons/partner_ledger_trial_balance/reports/report_partner_ledger.py:0
+#: code:addons/partner_ledger_trial_balance/reports/report_partner_ledger.py:0
+#: model:ir.model.fields.selection,name:partner_ledger_trial_balance.selection__partnerledger_wiz__options__total
+#, python-format
+msgid "Total"
+msgstr "إجمالي"
+
+#. module: partner_ledger_trial_balance
+#. odoo-python
+#: code:addons/partner_ledger_trial_balance/reports/report_partner_ledger.py:0
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.report_partnerledger
+#, python-format
+msgid "Transactions"
+msgstr "الحركات"
+
+#. module: partner_ledger_trial_balance
+#. odoo-python
+#: code:addons/partner_ledger_trial_balance/reports/report_partner_ledger.py:0
+#: code:addons/partner_ledger_trial_balance/reports/report_partner_ledger.py:0
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.partnerledger_details
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.report_partnerledger
+#, python-format
+msgid "Unkown Partner"
+msgstr "شريك مجهول"
+
+#. module: partner_ledger_trial_balance
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.partner_ledger_wizard
+msgid "View"
+msgstr "عرض"
+
+#. module: partner_ledger_trial_balance
+#: model_terms:ir.ui.view,arch_db:partner_ledger_trial_balance.partner_ledger_wizard
+msgid "or"
+msgstr "أو"
+
+#. module: partner_ledger_trial_balance
+#: model:ir.model,name:partner_ledger_trial_balance.model_partnerledger_wiz
+msgid "partnerledger.wiz"
+msgstr ""
+
+#. module: partner_ledger_trial_balance
+#: model:ir.model,name:partner_ledger_trial_balance.model_report_partner_ledger_trial_balance_partnerledger_details
+msgid "report.partner_ledger_trial_balance.partnerledger_details"
+msgstr ""
+
+#. module: partner_ledger_trial_balance
+#: model:ir.model,name:partner_ledger_trial_balance.model_report_partner_ledger_trial_balance_report_partnerledger
+msgid "report.partner_ledger_trial_balance.report_partnerledger"
+msgstr ""

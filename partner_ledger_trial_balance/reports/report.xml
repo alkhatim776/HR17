@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Partner Ledger PaperFormate-->
+    <!-- <record id="paperformat_partner_ledger" model="report.paperformat">
+        <field name="name">Partner Ledger</field>
+        <field name="default" eval="True"/>
+        <field name="format">custom</field>
+        <field name="page_height">350</field>
+        <field name="page_width">250</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">50</field>
+        <field name="margin_bottom">20</field>
+        <field name="margin_left">5</field>
+        <field name="margin_right">5</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">40</field>
+        <field name="dpi">90</field>
+    </record> -->
+
+    <!-- Partner Ledger -->
+    <record id="partner_ledger" model="ir.actions.report">
+        <field name="name">Partner Account Statement</field>
+        <field name="model">partnerledger.wiz</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">partner_ledger_trial_balance.report_partnerledger</field>
+        <field name="report_file">partner_ledger_trial_balance.report_partnerledger</field>
+    </record>
+
+    <record id="partner_ledger_details" model="ir.actions.report">
+        <field name="name">Detailed Partner Account Statement</field>
+        <field name="model">partnerledger.wiz</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">partner_ledger_trial_balance.partnerledger_details</field>
+        <field name="report_file">partner_ledger_trial_balance.partnerledger_details</field>
+    </record>
+
+    <record id="partner_ledger_html" model="ir.actions.report">
+        <field name="name">Partner Account Statement</field>
+        <field name="model">partnerledger.wiz</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">partner_ledger_trial_balance.report_partnerledger</field>
+        <field name="report_file">partner_ledger_trial_balance.report_partnerledger</field>
+    </record>
+
+    <record id="partner_ledger_details_html" model="ir.actions.report">
+        <field name="name">Detailed Partner Account Statement</field>
+        <field name="model">partnerledger.wiz</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">partner_ledger_trial_balance.partnerledger_details</field>
+        <field name="report_file">partner_ledger_trial_balance.partnerledger_details</field>
+    </record>
+
+    <record id="action_partner_ledger_xls" model="ir.actions.report">
+        <field name="name">Partner Account Statement</field>
+        <field name="model">partnerledger.wiz</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">partner_ledger_trial_balance.partner_ledger_xlsx_report</field>
+        <field name="report_file">partner_ledger_trial_balance.partner_ledger_xlsx_report</field>
+        <field name="print_report_name">Partner Account Statement</field>
+    </record>
+
+</odoo>

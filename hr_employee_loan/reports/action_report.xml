@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <!-- QWeb Reports -->
+        <report
+                id="new_action_employee_loan_report"
+                model="hr.loan"
+                report_type="qweb-pdf"
+                string="Employee Loan"
+                menu="True"
+                name="hr_employee_loan.new_hr_employee_loan_template"
+                file="hr_employee_loan.new_hr_employee_loan_template"
+        />
+
+        <report
+                id="action_hr_employee_loan_report"
+                model="hr.loan"
+                report_type="qweb-pdf"
+                string="Employee Loan"
+                menu="False"
+                name="hr_employee_loan.hr_employee_loan_template"
+                file="hr_employee_loan.hr_employee_loan_template"
+        />
+
+
+    </data>
+</odoo>

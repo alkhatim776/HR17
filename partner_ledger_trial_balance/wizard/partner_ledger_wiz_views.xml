@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="partner_ledger_wizard" model="ir.ui.view">
+            <field name="name">Partner Ledger</field>
+            <field name="model">partnerledger.wiz</field>
+            <field name="arch" type="xml">
+                <form string="Partner Ledger">
+                    <div class="alert alert-info" role="alert">
+                    Click on <strong> Print </strong> button to print partner ledger report.
+                    </div>
+
+                    <group>
+                        <field name="partner_ids" widget="many2many_tags" required="0"/>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="options"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="company_id" invisible="1"/>
+                        <group>
+                            <field name="date_from" style="color:#898687" required="1"/>
+                            <field name="date_to" style="color:#898687" required="1"/>
+                            <field name="target_move" widget="radio"/>
+                        </group>
+                        <group>
+                            <field name="account_ids" widget="many2many_tags" style="color:#898687" />
+                            <field name="partner_tag_ids" widget="many2many_tags" style="color:#898687" />
+                            <field name="result_selection"/>
+                            <field name="reconciled" invisible="1"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="print_partner_ledger" type="object" string="Print" class="btn btn-primary active" icon="fa-file-pdf-o" data-toggle="tooltip" title="Print Partner Ledger"/>
+                        or
+                        <button name="export_xls_report" string="Export XLS" type="object" class="oe_highlight" />
+                        or
+                        <button name="view_report" type="object" string="View" class="btn-primary" />
+                        or
+                        <button string="Cancel" class="btn btn-danger disabled" special="cancel" icon="fa-times"/>
+                    </footer>
+
+                </form>
+            
+            </field>
+        </record>
+
+        
+        <record id="partner_ledger_action" model="ir.actions.act_window">
+            <field name="name">Partner Account Statement</field>
+            <field name="res_model">partnerledger.wiz</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="partner_ledger_wizard"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem name="Partner Account Statement" action="partner_ledger_action" id="menu_partner_ledger_action" parent="account_reports.account_reports_partners_reports_menu" />
+
+    </data>
+</odoo>

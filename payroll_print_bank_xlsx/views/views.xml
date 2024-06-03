@@ -1,0 +1,13 @@
+<odoo>
+  <data>
+  <report
+    id="payslip_bank_xlsx"
+    model="hr.payslip.run"
+    string="Salary Xlsx Bank Reports"
+    report_type="xlsx"
+    name="payroll_print_bank_xlsx.xlsx_payroll_bank_report"
+    file="payslip_bank_xlsx"
+    attachment_use="False"
+/>
+  </data>
+</odoo>

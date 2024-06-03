@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_partnerledger">
+        <t t-call="web.html_container">
+            <t t-call="partner_ledger_trial_balance.external_layout">
+                <div class="page">               
+                    <h4 style="text-align:center; left:50%;">
+                        <strong>Partner Account Statement</strong>
+                    </h4>
+                    <br/>
+                    <br/>
+
+                    <div class="row" id="informations">
+                        <div class="col-6">
+                            <t t-if="data['date_from']">
+                                <strong>Date From:</strong>
+                                <span t-esc="data['date_from']"/>
+                            </t>
+                            <br />
+                            <strong>Accounts :</strong>
+                            <t t-if="data['account_ids']" t-esc="data['account_name']"/>
+                            <t t-if="not data['account_ids']" t-esc="'-'"/>
+                            <br />
+                            <strong>Account Type :</strong>
+                            <t t-if="data['result_selection'] == 'customer'">Receivable Accounts</t>
+                            <t t-if="data['result_selection'] == 'supplier'">Payable Accounts</t>
+                            <t t-if="data['result_selection'] == 'customer_supplier'">Receivable and Payable Accounts</t>
+                        </div>
+                        <div class="col-6">
+                            <t t-if="data['date_to']">
+                                <strong>Date To:</strong>
+                                <span t-esc="data['date_to']"/>
+                            </t>
+                            <br />
+                            <strong>Target Moves :</strong>
+                            <t t-if="data['target_move'] == 'all'">All Entries</t>
+                            <t t-if="data['target_move'] == 'posted'">All Posted Entries</t>
+                            <br />
+                            <strong>Partner Tags :</strong>
+                            <t t-if="data['partner_tag_ids']" t-esc="data['partner_tag_name']"/>
+                            <t t-if="not data['partner_tag_ids']" t-esc="'-'"/>
+                        </div>
+                    </div>
+                    <br/>
+                    <table class="table table-sm o_main_table" style="font-size: 15px;">
+                        <thead>
+                            <tr>
+                                <th style="text-transform: none;" rowspan="2">Partner No</th>
+                                <th style="text-transform: none;" rowspan="2">Partner Name</th>
+                                <th style="text-transform: none;" t-if="data['options'] == 'detailed'" rowspan="2" colspan="2">Ref</th>
+                                <!-- <th t-if="data['options'] == 'detailed'" rowspan="2">Label</th> -->
+                                <th style="text-transform: none;" t-if="data['options'] == 'detailed'" rowspan="2">Date</th>
+                                <th style="text-align:center; text-transform: none;" colspan="2">Opening Balance</th>
+                                <th style="text-align:center; text-transform: none;" colspan="2">Transactions</th>
+                                <th style="text-align:center; text-transform: none;" colspan="2">Ending Balance</th>
+                            </tr>
+                            <tr >
+                                <th  style="text-align:center; text-transform: none;">Debit</th>
+                                <th style="text-align:center; text-transform: none;">Credit</th>
+                                <th style="text-align:center; text-transform: none;">Debit</th>
+                                <th style="text-align:center; text-transform: none;">Credit</th>
+                                <th style="text-align:center; text-transform: none;">Debit</th>
+                                <th style="text-align:center; text-transform: none;">Credit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-set="total_debit" t-value="0"/>
+                            <t t-set="total_credit" t-value="0"/>
+                            <t t-set="total_balance" t-value="0"/>
+                            <t t-set="init_total_debit" t-value="0"/>
+                            <t t-set="init_total_credit" t-value="0"/>
+                            <t t-set="init_total_balance" t-value="0"/>
+                            <t t-foreach="lines" t-as="line">
+                                <t t-if="not (line['init_balance'] == 0 and line['debit'] == 0 and line['credit'] == 0)" >
+                                    <t t-set="total_debit" t-value="total_debit + line['debit']"/>
+                                    <t t-set="total_credit" t-value="total_credit + line['credit']"/>
+                                    <t t-set="total_balance" t-value="total_balance + line['balance']"/>
+                                    <t t-set="init_debit" t-value="line['init_balance'] &gt; 0 and line['init_balance'] or 0" />
+                                    <t t-set="init_credit" t-value="line['init_balance'] &lt; 0 and abs(line['init_balance']) or 0" />
+                                    <t t-set="end_debit" t-value="(line['balance'] + line['init_balance']) &gt; 0 and (line['balance'] + line['init_balance']) or 0" />
+                                    <t t-set="end_credit" t-value="(line['balance'] + line['init_balance']) &lt; 0 and abs(line['balance'] + line['init_balance']) or 0" />
+                                    <t t-set="init_total_debit" t-value="init_total_debit + init_debit"/>
+                                    <t t-set="init_total_credit" t-value="init_total_credit + init_credit"/>
+                                    <t t-set="init_total_balance" t-value="init_total_balance + line['init_balance']"/>
+                                    <t t-set="partner_id" t-value="partner(line['partner_id'])" />
+                                    <tr t-attf-style="{{ 'font-size: 13px;font-weight: bold;' if data['options'] == 'detailed' else 'font-size: 13px;' }}">
+                                        <td style="text-align:center;">
+                                            <span t-esc="partner_id.ref"/>
+                                        </td>
+                                        <td t-attf-colspan="{{ 4 if data['options'] == 'detailed' else 1 }}" style="text-align:center;">
+                                            <span t-if="partner_id.name" t-esc="partner_id.name"/>
+                                            <span t-if="not partner_id.name">Unkown Partner</span>
+                                        </td>
+                                        <td style="text-align:right;">
+                                            <span t-esc="init_debit" t-options="{'widget': 'monetary', 'display_currency': env.company.currency_id}"/>
+                                        </td>
+                                        <td style="text-align:right;">
+                                            <span t-esc="init_credit" t-options="{'widget': 'monetary', 'display_currency': env.company.currency_id}"/>
+                                        </td>
+                                        <td style="text-align:right;">
+                                            <span t-esc="line['debit']" t-options="{'widget': 'monetary', 'display_currency': env.company.currency_id}"/>
+                                        </td>
+                                        <td style="text-align:right;">
+                                            <span t-esc="line['credit']" t-options="{'widget': 'monetary', 'display_currency': env.company.currency_id}"/>
+                                        </td>
+                                        <td style="text-align:right;">
+                                            <span t-esc="end_debit" t-options="{'widget': 'monetary', 'display_currency': env.company.currency_id}"/>
+                                        </td>
+                                        <td style="text-align:right;">
+                                            <span t-esc="end_credit" t-options="{'widget': 'monetary', 'display_currency': env.company.currency_id}"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </t>
+                            <tr class="is-subtotal text-end" t-attf-style="{{ 'font-size: 13px;font-weight: bold;' if data['options'] == 'detailed' else 'font-size: 13px; font-weight: bold;' }}">
+                                <td t-attf-colspan="{{ 5 if data['options'] == 'detailed' else 2}}" style="text-align:center;">
+                                    <strong>Total</strong>
+                                </td>
+                                <td style="text-align:right;">
+                                    <span t-esc="init_total_debit" t-options="{'widget': 'monetary', 'display_currency': env.company.currency_id}"/>
+                                </td>
+                                <td style="text-align:right;">
+                                    <span t-esc="init_total_credit" t-options="{'widget': 'monetary', 'display_currency': env.company.currency_id}"/>
+                                </td>
+                                <td style="text-align:right;">
+                                    <span t-esc="total_debit" t-options="{'widget': 'monetary', 'display_currency': env.company.currency_id}"/>
+                                </td>
+                                <td style="text-align:right;">
+                                    <span t-esc="total_credit" t-options="{'widget': 'monetary', 'display_currency': env.company.currency_id}"/>
+                                </td>
+                                <td style="text-align:right;">
+                                    <span t-esc="(init_total_balance + total_balance) &gt; 0 and (init_total_balance + total_balance) or 0" t-options="{'widget': 'monetary', 'display_currency': env.company.currency_id}"/>
+                                </td>
+                                <td style="text-align:right;">
+                                    <span t-esc="(init_total_balance + total_balance) &lt; 0 and abs(init_total_balance + total_balance) or 0" t-options="{'widget': 'monetary', 'display_currency': env.company.currency_id}"/>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+    <template id="external_layout">
+        <t t-if="not o" t-set="o" t-value="doc"/>
+
+        <t t-if="not company">
+            <!-- Multicompany -->
+            <t t-if="company_id">
+                <t t-set="company" t-value="company_id"/>
+            </t>
+            <t t-elif="o and 'company_id' in o and o.company_id.sudo()">
+                <t t-set="company" t-value="o.company_id.sudo()"/>
+            </t>
+            <t t-else="else">
+                <t t-set="company" t-value="res_company"/>
+            </t>
+        </t>
+
+        <!-- <t t-if="company.external_report_layout_id" t-call="{{company.external_report_layout_id.sudo().key}}"><t t-out="0"/></t>
+        <t t-else="else" t-call="web.external_layout_standard"><t t-out="0"/></t> -->
+        <t t-call="partner_ledger_trial_balance.boxed_external_layout_inherits">
+            <t t-out="0"/>
+        </t>
+
+    </template>
+
+    <template id="boxed_external_layout_inherits">
+
+        <div t-attf-class="header o_company_#{company.id}_layout" t-att-style="report_header_style">
+            <div class="row">
+                <div class="col-3 mb4">
+                    <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 45px;" alt="Logo"/>
+                </div>
+                <div class="col-9 text-end" style="margin-top:22px;" t-field="company.report_header" name="moto"/>
+            </div>
+            <div t-if="company.logo or company.report_header" class="row zero_min_height">
+                <div class="col-12">
+                    <div style="border-bottom: 1px solid black;"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6" name="company_address">
+                    <ul class="list-unstyled">
+                        <li t-if="company.is_company_details_empty">
+                            <t t-esc="company.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: true}"/>
+                        </li>
+                        <li t-else="">
+                            <t t-esc="company.company_details"/>
+                        </li>
+                        <li t-if="forced_vat">
+                            <t t-esc="company.country_id.vat_label or 'Tax ID'"/>
+:
+                            <span t-esc="forced_vat"/>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div t-attf-class="article o_report_layout_boxed o_company_#{company.id}_layout {{  'o_report_layout_background' if company.layout_background in ['Geometric', 'Custom']  else  '' }}" t-attf-style="background-image: url({{ 'data:image/png;base64,%s' % company.layout_background_image.decode('utf-8') if company.layout_background_image and company.layout_background == 'Custom' else '/base/static/img/bg_background_template.jpg' if company.layout_background == 'Geometric' else ''}});" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+            <!-- <div class="pt-5">
+                    <t t-call="web.address_layout"/>
+                </div> -->
+            <t t-out="0"/>
+        </div>
+
+        <div t-attf-class="footer o_boxed_footer o_company_#{company.id}_layout">
+            <div class="text-center">
+                <div t-field="company.report_footer"/>
+                <div t-if="report_type == 'pdf'">
+                        Page: <span class="page"/>/ <span class="topage"/>
+            </div>
+            <div t-if="report_type == 'pdf' and display_name_in_footer" class="text-muted">
+                <span t-field="o.name"/>
+            </div>
+        </div>
+    </div>
+
+</template>
+
+<!-- Detailed Partner Statement-->
+<template id="partnerledger_details">
+        <t t-call="web.html_container">
+            <t t-call="partner_ledger_trial_balance.external_layout">
+                <div class="page">
+                    <h4 style="text-align:center; left:50%;">
+                        <strong>Detailed Partner Account Statement</strong>
+                    </h4>
+                    <br/>
+                    <br/>
+
+                    <div class="row" id="informations">
+                        <div class="col-6">
+                            <t t-if="data['date_from']">
+                                <strong>Date From:</strong>
+                                <span t-esc="data['date_from']"/>
+                            </t>
+                            <br />
+                            <strong>Accounts :</strong>
+                            <t t-if="data['account_ids']" t-esc="data['account_name']"/>
+                            <t t-if="not data['account_ids']" t-esc="'-'"/>
+                            <br />
+                            <strong>Account Type :</strong>
+                            <t t-if="data['result_selection'] == 'customer'">Receivable Accounts</t>
+                            <t t-if="data['result_selection'] == 'supplier'">Payable Accounts</t>
+                            <t t-if="data['result_selection'] == 'customer_supplier'">Receivable and Payable Accounts</t>
+                        </div>
+                        <div class="col-6">
+                            <t t-if="data['date_to']">
+                                <strong>Date To:</strong>
+                                <span t-esc="data['date_to']"/>
+                            </t>
+                            <br />
+                            <strong>Target Moves :</strong>
+                            <t t-if="data['target_move'] == 'all'">All Entries</t>
+                            <t t-if="data['target_move'] == 'posted'">All Posted Entries</t>
+                            <br />
+                            <strong>Partner Tags :</strong>
+                            <t t-if="data['partner_tag_ids']" t-esc="data['partner_tag_name']"/>
+                            <t t-if="not data['partner_tag_ids']" t-esc="'-'"/>
+                        </div>
+                    </div>
+                    <br/>
+                    <table class="table table-sm o_main_table" style="font-size: 15px;">
+                        <thead>
+                            <tr>
+                                <!-- < th style="text-transform: none;" rowspan="2">Partner No</th> -->
+                                <th style="text-transform: none;">Partner</th>
+                                <th style="text-transform: none;">Date</th>
+                                <th style="text-transform: none;">Entry</th>
+                                <th style="text-transform: none;">Label</th>
+                                <th style="text-align:center; text-transform: none;">Debit</th>
+                                <th style="text-align:center; text-transform: none;">Credit</th>
+                                <th style="text-align:center; text-transform: none;">Balance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-set="total_debit" t-value="0"/>
+                            <t t-set="total_credit" t-value="0"/>
+                            <t t-set="total_balance1" t-value="0"/>
+                            <t t-set="total_balance" t-value="0"/>
+                            <!-- <t t-set="init_total_debit" t-value="init_total_debit"/>
+                            <t t-set="total_balance" t-value="0"/> -->
+                            <t t-foreach="lines" t-as="line">
+                                <t t-if="not (line['init_balance'] == 0 and line['debit'] == 0 and line['credit'] == 0)" >
+                                    <t t-set="total_debit" t-value="total_debit + line['debit'] + line['init_debit']"/>
+                                    <t t-set="total_credit" t-value="total_credit + line['credit'] + line['init_credit']"/>
+                                    <t t-set="total_balance1" t-value="total_balance1 + line['balance'] + line['init_balance']"/>
+                                    <t t-set="total_balance" t-value="line['init_balance'] or 0"/>
+                                    <t t-set="init_debit" t-value="line['init_balance'] &gt; 0 and line['init_balance'] or 0" />
+                                    <t t-set="init_credit" t-value="line['init_balance'] &lt; 0 and abs(line['init_balance']) or 0" />
+                                    <!-- <t t-set="init_total_debit" t-value="init_total_debit + init_debit"/>
+                                    <t t-set="init_total_credit" t-value="init_total_credit + init_credit"/> -->
+                                    <t t-set="partner_id" t-value="partner(line['partner_id'])" /> 
+                                    <tr t-attf-style="{{ 'font-size: 13px;font-weight: bold;' if data['options'] == 'detailed' else 'font-size: 13px;' }}">
+                                        <td  t-attf-style="{{ 'text-align:right;' if lang == 'ar_001' else 'text-align:left;'}}" colspan="7">
+                                            <span t-esc="(partner_id.ref or '') + ' ' + (partner_id.name or '')"/>
+                                            <span t-if="not partner_id.name">Unkown Partner</span>
+                                        </td>
+                                        
+                                        <!-- <td style="text-align:right;">
+                                            <span t-esc="init_debit + line['debit']" t-options="{'widget': 'monetary', 'display_currency': env.company.currency_id}"/>
+                                        </td>
+                                        <td style="text-align:right;">
+                                            <span t-esc="init_credit + line['credit']" t-options="{'widget': 'monetary', 'display_currency': env.company.currency_id}"/>
+                                        </td>
+                                        <td style="text-align:right;">
+                                            <span t-esc="line['init_balance'] + line['balance']" t-options="{'widget': 'monetary', 'display_currency': env.company.currency_id}"/>
+                                        </td> -->
+                                    </tr>
+                                    <t t-set="count" t-value="1" />
+                                    <tr style="font-size: 12px;">   
+                                        <td style="text-align:center;">
+                                            <span t-esc="count" />
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>
+                                            <span>Initial Balance</span>
+                                        </td>
+                                            <td style="text-align:right;">
+                                            <span t-esc="init_debit" t-options="{'widget': 'monetary', 'display_currency': env.company.currency_id}"/>
+                                        </td>
+                                        <td style="text-align:right;">
+                                            <span t-esc="init_credit" t-options="{'widget': 'monetary', 'display_currency': env.company.currency_id}"/>
+                                        </td>
+                                        <td style="text-align:right;">
+                                            <span t-esc="init_debit - init_credit" t-options="{'widget': 'monetary', 'display_currency': env.company.currency_id}"/>
+                                        </td>
+                                    </tr>
+                                    <!--partner details-->
+                                    <t t-if="data['options'] == 'detailed' and line['partner_id'] in detail_lines.keys()">
+                                        <t t-foreach="detail_lines[line['partner_id']]" t-as="sub_line">
+                                            <t t-set="count" t-value="count + 1" />
+                                            <t t-set="total_balance" t-value="total_balance + sub_line['balance']"/>
+                                            <tr style="font-size: 12px;">   
+                                                <td style="text-align:center;">
+                                                    <span t-esc="count" />
+                                                </td>
+                                                <td>
+                                                    <span t-esc="sub_line['date']"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="sub_line['move_name']"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="sub_line['label']"/>
+                                                </td>
+                                                <td style="text-align:right;">
+                                                    <span t-esc="sub_line['debit']" t-options="{'widget': 'monetary', 'display_currency': env.company.currency_id}"/>
+                                                </td>
+                                                <td style="text-align:right;">
+                                                    <span t-esc="sub_line['credit']" t-options="{'widget': 'monetary', 'display_currency': env.company.currency_id}"/>
+                                                </td>
+                                                <td style="text-align:right;">
+                                                    <span t-esc="total_balance" t-options="{'widget': 'monetary', 'display_currency': env.company.currency_id}"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </t>
+                                    <tr t-attf-style="{{ 'font-size: 13px;font-weight: bold;' if data['options'] == 'detailed' else 'font-size: 13px;' }}">
+                                        <td style="text-align:center;">
+                                            <span>#</span>
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>
+                                            <span>Ending Balance</span>
+                                        </td>
+                                        
+                                        <td style="text-align:right;">
+                                            <span t-esc="init_debit + line['debit']" t-options="{'widget': 'monetary', 'display_currency': env.company.currency_id}"/>
+                                        </td>
+                                        <td style="text-align:right;">
+                                            <span t-esc="init_credit + line['credit']" t-options="{'widget': 'monetary', 'display_currency': env.company.currency_id}"/>
+                                        </td>
+                                        <td style="text-align:right;">
+                                            <span t-esc="line['init_balance'] + line['balance']" t-options="{'widget': 'monetary', 'display_currency': env.company.currency_id}"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </t>
+                            <tr t-if="lines and len(lines) != 1" class="is-subtotal text-end" t-attf-style="{{ 'font-size: 13px;font-weight: bold;' if data['options'] == 'detailed' else 'font-size: 13px; font-weight: bold;' }}">
+                                <td t-attf-colspan="{{ 4 if data['options'] == 'detailed' else 2}}" style="text-align:center;">
+                                    <strong>Total</strong>
+                                </td>
+                                
+                                <td style="text-align:right;">
+                                        <span t-esc="total_debit" t-options="{'widget': 'monetary', 'display_currency': env.company.currency_id}"/>
+                                </td>
+                                <td style="text-align:right;">
+                                        <span t-esc="total_credit" t-options="{'widget': 'monetary', 'display_currency': env.company.currency_id}"/>
+                                </td>
+                                <td style="text-align:right;">
+                                        <span t-esc="total_balance1" t-options="{'widget': 'monetary', 'display_currency': env.company.currency_id}"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>
